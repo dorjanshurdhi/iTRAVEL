@@ -13,7 +13,7 @@
   <stayAlive>true</stayAlive>
   <restartOnCrash>true</restartOnCrash>
   <manifest></manifest>
-  <icon>logo.ico</icon>
+  <icon>itravel.ico</icon>
   <singleInstance>
     <mutexName>iTRAVEL 0.0.1</mutexName>
     <windowTitle>iTRAVEL 0.0.1</windowTitle>
