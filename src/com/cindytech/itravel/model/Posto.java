@@ -1,6 +1,5 @@
 package com.cindytech.itravel.model;
 
-
 public class Posto {
     
 	private Long id;
