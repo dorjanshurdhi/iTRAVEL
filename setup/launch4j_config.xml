@@ -3,7 +3,7 @@
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
   <jar>../target\itravel-0.0.1-SNAPSHOT-jar-with-dependencies.jar</jar>
-  <outfile>D:\Progetti JAVA\iVALUTA\iValuta\iValuta.exe</outfile>
+  <outfile>D:\Progetti JAVA\iTRAVEL\iTRAVEL\iTRAVEL.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>
   <chdir>.</chdir>
