@@ -5,7 +5,7 @@
 #define MyAppVersion "0.0.1"
 #define MyAppPublisher "CindyConulting "
 #define MyAppURL "https://www.cindyconsulting.tech"
-#define MyAppExeName "iValuta.exe"
+#define MyAppExeName "iTravel.exe"
 #define MyAppAssocName MyAppName + "0.0.1-Setup"
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
@@ -41,8 +41,8 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Progetti JAVA\iVALUTA\iValuta\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Progetti JAVA\iVALUTA\iValuta\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\Progetti JAVA\iTRAVEL\iTravel\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Progetti JAVA\iTRAVEL\iTravel\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
