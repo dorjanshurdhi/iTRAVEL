@@ -199,7 +199,7 @@ public class Home extends javax.swing.JFrame {
 
 		lGiff = new javax.swing.JLabel();
 		lGiff.setHorizontalAlignment(SwingConstants.RIGHT);
-		lGiff.setIcon(new ImageIcon(Home.class.getResource("/icon/giff/borsa.gif")));
+		lGiff.setIcon(new ImageIcon(Home.class.getResource("/icon/giff/trav120.gif")));
 
 		lData = new javax.swing.JLabel("");
 		lData.setForeground(new java.awt.Color(240, 199, 5));
