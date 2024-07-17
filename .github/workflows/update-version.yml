@@ -1,0 +1,62 @@
+name: Update Version on PR
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: "4.6.11"
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.head_ref }}
+    
+    - name: Print version
+      run: |
+        echo "Using version $VERSION"
+    - name: Update version in pom.xml
+      run: |
+        sed -i "s/<version>.*-SNAPSHOT<\/version>/<version>${VERSION}-SNAPSHOT<\/version>/" pom.xml
+        sed -i "s/<project.version>.*<\/project.version>/<project.version>${VERSION}<\/project.version>/" pom.xml
+    - name: Update version in Launch4j config file
+      run: |
+        sed -i "s/ivaluta-.*-SNAPSHOT-jar-with-dependencies.jar/ivaluta-${VERSION}-SNAPSHOT-jar-with-dependencies.jar/" setup/launch4j_config.xml
+        sed -i "s/<mutexName>iVALUTA [0-9].[0-9].[0-9]<\/mutexName>/<mutexName>iVALUTA $VERSION<\/mutexName>/" setup/launch4j_config.xml
+        sed -i "s/<windowTitle>iVALUTA [0-9].[0-9].[0-9]<\/windowTitle>/<windowTitle>iVALUTA $VERSION<\/windowTitle>/" setup/launch4j_config.xml
+    - name: Update version in Inno Setup file
+      run: |
+        sed -i "s/#define MyAppVersion \".*\"/#define MyAppVersion \"${VERSION}\"/" setup/inno_setup.iss  
+        sed -i "s/MyAppAssocName MyAppName + \".*-Setup\"/MyAppAssocName MyAppName + \"$VERSION-Setup\"/" setup/inno_setup.iss
+        sed -i "s/OutputBaseFilename=iVALUTA-.*-Setup/OutputBaseFilename=iVALUTA-$VERSION-Setup/" setup/inno_setup.iss
+    - name: Update version in Jenkinsfile
+      run: |
+        sed -i "s/setup\/iVALUTA-.*-Setup.exe/setup\/iVALUTA-$VERSION-Setup.exe/" Jenkinsfile
+    - name: Update version in config.properties
+      run: |
+        sed -i "s/software.version=.*/software.version=$VERSION/" resource/config.properties
+        sed -i "s/versione=.*/versione=$VERSION/" resource/config.properties
+    - name: Update version in README.md
+      run: |
+        sed -i "s/# version [0-9]\+\.[0-9]\+\.[0-9]\+/# version $VERSION/" README.md
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add pom.xml Jenkinsfile setup/inno_setup.iss setup/launch4j_config.xml resource/config.properties README.md
+        git commit -m "Update version to $VERSION"
+        git push origin ${{ github.head_ref }}
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ env.VERSION }}
+        release_name: Release ${{ env.VERSION }}
+        draft: false
+        prerelease: false
