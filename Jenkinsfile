@@ -58,7 +58,7 @@ pipeline {
         stage('Archive Setup.exe') {
             steps {
                 // Archive the executable
-                archiveArtifacts artifacts: 'setup/TRAVEL-0.0.1-Setup.exe', fingerprint: true
+                archiveArtifacts artifacts: 'setup/iTRAVEL-0.0.1-Setup.exe', fingerprint: true
             }
         }
     }
